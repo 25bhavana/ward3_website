@@ -105,7 +105,7 @@ footer{background:#321047;color:white;padding:48px 0 18px}.footer-grid{display:g
 <div class="field"><label data-en="Ward Number (optional)" data-mr="प्रभाग क्रमांक (ऐच्छिक)" for="ward">प्रभाग क्रमांक (ऐच्छिक)</label><input id="ward" name="Ward Number" maxlength="20" placeholder="उदा. १ / २" data-placeholder-en="e.g. 1 / 2" data-placeholder-mr="उदा. १ / २" type="text"/></div>
 <div class="field"><label data-en="Complaint Category *" data-mr="तक्रारीचा प्रकार *" for="category">तक्रारीचा प्रकार *</label><select id="category" name="Complaint Category" required=""><option data-en="Select Category" data-mr="प्रकार निवडा" value="">प्रकार निवडा</option><option data-en="Water" data-mr="पाणीपुरवठा" value="Water">पाणीपुरवठा</option><option data-en="Roads" data-mr="रस्ते" value="Roads">रस्ते</option><option data-en="Drainage" data-mr="नाली / ड्रेनेज" value="Drainage">नाली / ड्रेनेज</option><option data-en="Women &amp; Child Welfare" data-mr="महिला व बालकल्याण" value="Women and Child Welfare">महिला व बालकल्याण</option><option data-en="Other" data-mr="इतर" value="Other">इतर</option></select></div>
 <div class="field"><label data-en="Your Message / Complaint *" data-mr="आपला संदेश / तक्रार *" for="message">आपला संदेश / तक्रार *</label><textarea data-placeholder-en="Describe your concern in detail..." data-placeholder-mr="आपली समस्या सविस्तर लिहा..." id="message" maxlength="3000" name="Message" placeholder="आपली समस्या सविस्तर लिहा..." required=""></textarea></div>
-<button class="btn primary submit" data-en="Submit Complaint →" data-mr="तक्रार सबमिट करा →" type="submit">तक्रार सबमिट करा →</button><button type="button" id="waBtn" class="btn wa-btn" data-en="Send on WhatsApp" data-mr="WhatsApp वर पाठवा">WhatsApp वर पाठवा</button><p class="form-status" id="formStatus" role="status" aria-live="polite"></p><p class="note" data-en="Your information will be used in connection with your complaint." data-mr="आपली माहिती तक्रारीच्या संदर्भात वापरली जाईल.">आपली माहिती तक्रारीच्या संदर्भात वापरली जाईल.</p>
+<button class="btn primary submit" data-en="Submit Complaint →" data-mr="तक्रार सबमिट करा →" type="submit">तक्रार सबमिट करा →</button><p class="form-status" id="formStatus" role="status" aria-live="polite"></p><p class="note" data-en="Your information will be used in connection with your complaint." data-mr="आपली माहिती तक्रारीच्या संदर्भात वापरली जाईल.">आपली माहिती तक्रारीच्या संदर्भात वापरली जाईल.</p>
 </form></div></div></section>
 <section class="section contact" id="contact"><div class="container"><div class="heading reveal"><span class="eyebrow" data-en="GET IN TOUCH" data-mr="आमच्याशी संपर्क साधा">आमच्याशी संपर्क साधा</span><h2 data-en="Contact" data-mr="संपर्क">संपर्क</h2><p data-en="Reach out with your suggestions, questions and feedback." data-mr="आपल्या सूचना, प्रश्न आणि अभिप्राय आमच्यापर्यंत पोहोचवा.">आपल्या सूचना, प्रश्न आणि अभिप्राय आमच्यापर्यंत पोहोचवा.</p></div>
 <div class="contact-grid"><div class="contact-card reveal"><div class="contact-icon">👤</div><h3 data-en="Public Representative" data-mr="लोकप्रतिनिधी">लोकप्रतिनिधी</h3><p data-en="Shilpa Tulshiram Chute" data-mr="शिल्पा तुळशीराम चुटे">शिल्पा तुळशीराम चुटे</p></div><div class="contact-card reveal"><div class="contact-icon">📞</div><h3 data-en="Phone" data-mr="मोबाईल">मोबाईल</h3><a href="tel:+919370253998">+91 93702 53998</a></div><div class="contact-card reveal"><div class="contact-icon">✉️</div><h3 data-en="Email" data-mr="ई-मेल">ई-मेल</h3><a href="mailto:info@shilpachute.in">info@shilpachute.in</a></div></div></div></section>
@@ -220,12 +220,11 @@ const OFFICE_WHATSAPP = '919370253998'; // office WhatsApp: country code + numbe
 
   const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'mr');
   const T = {
-    sending:   { mr: 'ई-मेल पाठवत आहे...', en: 'Sending email…' },
-    ok:        { mr: 'आपली तक्रार ई-मेलने यशस्वीरित्या पाठवली गेली. धन्यवाद!', en: 'Your complaint was emailed successfully. Thank you!' },
-    badMobile: { mr: 'कृपया वैध १० अंकी मोबाईल क्रमांक टाका.', en: 'Please enter a valid 10-digit mobile number.' },
-    required:  { mr: 'कृपया सर्व आवश्यक माहिती भरा.', en: 'Please fill in all required fields.' },
-    fail:      { mr: 'ई-मेल पाठवता आली नाही. कृपया खालील WhatsApp बटण वापरा किंवा थेट फोन करा.', en: 'Email could not be sent. Please use the WhatsApp button below, or call us directly.' },
-    waOpen:    { mr: 'WhatsApp उघडत आहे... कृपया पाठवा दाबा.', en: 'Opening WhatsApp… please press send.' }
+    waAndSending: { mr: 'WhatsApp उघडले आहे — कृपया Send दाबा. ई-मेलही पाठवली जात आहे...', en: 'WhatsApp opened — please press Send. Emailing too…' },
+    okBoth:       { mr: 'ई-मेल पाठवली ✓. आता WhatsApp मध्ये Send दाबायला विसरू नका.', en: 'Email sent ✓. Now don’t forget to press Send in WhatsApp.' },
+    failWa:       { mr: 'ई-मेल पाठवता आली नाही, पण WhatsApp उघडले आहे — कृपया तिथे Send दाबा.', en: 'Email failed, but WhatsApp is open — please press Send there.' },
+    badMobile:    { mr: 'कृपया वैध १० अंकी मोबाईल क्रमांक टाका.', en: 'Please enter a valid 10-digit mobile number.' },
+    required:     { mr: 'कृपया सर्व आवश्यक माहिती भरा.', en: 'Please fill in all required fields.' }
   };
   const show = (key, type) => {
     statusEl.textContent = T[key][lang()] || T[key].en;
@@ -246,34 +245,33 @@ const OFFICE_WHATSAPP = '919370253998'; // office WhatsApp: country code + numbe
     return d;
   }
 
-  // ---- EMAIL via Web3Forms ----
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const d = collect();
-    if (d.bot) { show('ok', 'success'); form.reset(); return; }
-    if (d.error) { show(d.error, 'error'); return; }
-    if (emailBtn) emailBtn.disabled = true;
-    show('sending', 'success');
-    try {
-      const res = await fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
-      const out = await res.json().catch(() => ({}));
-      if (res.ok && out.success) { show('ok', 'success'); form.reset(); }
-      else { show('fail', 'error'); }
-    } catch (_) { show('fail', 'error'); }
-    if (emailBtn) emailBtn.disabled = false;
-  });
-
-  // ---- WHATSAPP: open a pre-filled chat to the office number ----
-  if (waBtn) waBtn.addEventListener('click', () => {
-    const d = collect();
-    if (d.bot) return;
-    if (d.error) { show(d.error, 'error'); return; }
-    const en = lang() === 'en';
-    const lines = en
+  function waText(d) {
+    const lines = (lang() === 'en')
       ? ['*New Citizen Complaint*', 'Ref: ' + d.reference, 'Name: ' + d.name, 'Mobile: ' + d.mobile, 'Ward: ' + (d.ward || '-'), 'Category: ' + d.category, 'Complaint: ' + d.message, 'Time: ' + d.time]
       : ['*नवीन नागरिक तक्रार*', 'संदर्भ: ' + d.reference, 'नाव: ' + d.name, 'मोबाईल: ' + d.mobile, 'प्रभाग: ' + (d.ward || '-'), 'प्रकार: ' + d.category, 'तक्रार: ' + d.message, 'वेळ: ' + d.time];
-    show('waOpen', 'success');
-    window.open('https://wa.me/' + OFFICE_WHATSAPP + '?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+    return lines.join('\n');
+  }
+
+  // ONE button -> BOTH channels: open WhatsApp (needs one tap) + send the same complaint by email automatically.
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = collect();
+    if (d.bot) { show('okBoth', 'success'); form.reset(); return; }
+    if (d.error) { show(d.error, 'error'); return; }
+
+    // 1) Open WhatsApp pre-filled. MUST be synchronous (inside the click) or the browser blocks the popup.
+    window.open('https://wa.me/' + OFFICE_WHATSAPP + '?text=' + encodeURIComponent(waText(d)), '_blank');
+    show('waAndSending', 'success');
+
+    // 2) Send the same complaint by email in the background (Web3Forms).
+    if (emailBtn) emailBtn.disabled = true;
+    fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) })
+      .then(r => r.json()).then(o => {
+        if (o && o.success) { show('okBoth', 'success'); form.reset(); }
+        else { show('failWa', 'error'); }
+      })
+      .catch(() => show('failWa', 'error'))
+      .finally(() => { if (emailBtn) emailBtn.disabled = false; });
   });
 })();
 </script>
